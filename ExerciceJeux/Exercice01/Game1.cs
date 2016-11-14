@@ -13,6 +13,7 @@ namespace Exercice01
         SpriteBatch spriteBatch;
         Rectangle fenetre;
         GameObject heros;
+        GameObject ennemi;
 
         public Game1()
         {
@@ -56,6 +57,13 @@ namespace Exercice01
             heros.vitesse = 5;
             heros.sprite = Content.Load<Texture2D>("Mario.png");
             heros.position = heros.sprite.Bounds;
+
+            ennemi = new GameObject();
+            ennemi.estVivant = true;
+            ennemi.vitesse = 7;
+            ennemi.sprite = Content.Load<Texture2D>("Bowserjr_MP9.png");
+            ennemi.position = ennemi.sprite.Bounds;
+
             // TODO: use this.Content to load your game content here
         }
 
@@ -79,44 +87,55 @@ namespace Exercice01
                 Exit();
 
             // TODO: Add your update logic here
-            if (Keyboard.GetState().IsKeyDown(Keys.D))
+            
+            if (Keyboard.GetState().IsKeyDown(Keys.D)) //Droite
             {
                 heros.position.X += heros.vitesse;
             }
-            else if (Keyboard.GetState().IsKeyDown(Keys.A))
-            {
-                heros.position.X -= heros.vitesse;
-            }
-            else if (Keyboard.GetState().IsKeyDown(Keys.W))
+            if (Keyboard.GetState().IsKeyDown(Keys.W)) //Up
             {
                 heros.position.Y -= heros.vitesse;
             }
-            else if (Keyboard.GetState().IsKeyDown(Keys.S))
+            if (Keyboard.GetState().IsKeyDown(Keys.A)) //Gauche
+            {
+                heros.position.X -= heros.vitesse;
+            }
+            if (Keyboard.GetState().IsKeyDown(Keys.S)) //Down
             {
                 heros.position.Y += heros.vitesse;
             }
+            //Ennemis move
+
+
+                ennemi.position.X += ennemi.vitesse;
+
+                ennemi.position.X -= ennemi.vitesse;
+
+
             UpdateHeros();
+
             base.Update(gameTime);
         }
-        protected void UpdateHeros()
+        protected void UpdateHeros()//Check game limit (frame)
         {
             if (heros.position.X < fenetre.Left)
             {
                 heros.position.X = fenetre.Left;
             }
-            else if (heros.position.X > fenetre.Right)
+            if (heros.position.X + heros.sprite.Bounds.Width > fenetre.Right)
             {
-                heros.position.X = fenetre.Right;
+                heros.position.X = fenetre.Right - heros.sprite.Bounds.Width;
             }
-            else if (heros.position.Y < fenetre.Top)
+            if (heros.position.Y < fenetre.Top)
             {
                 heros.position.Y = fenetre.Top;
             }
-            else if (heros.position.Y > fenetre.Bottom)
+            if (heros.position.Y + heros.sprite.Bounds.Height > fenetre.Bottom)
             {
-                heros.position.Y = fenetre.bottom;
+                heros.position.Y = fenetre.Bottom - heros.sprite.Bounds.Height;
             }
         }
+
         /// <summary>
         /// This is called when the game should draw itself.
         /// </summary>
@@ -128,6 +147,7 @@ namespace Exercice01
             // TODO: Add your drawing code here
             spriteBatch.Begin();
             spriteBatch.Draw(heros.sprite, heros.position, Color.White);
+            spriteBatch.Draw(ennemi.sprite, ennemi.position, Color.White);
             spriteBatch.End();
 
             base.Draw(gameTime);
