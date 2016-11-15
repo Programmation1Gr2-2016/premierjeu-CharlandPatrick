@@ -20,9 +20,14 @@ C:\Users\blupp\Google Drive Cégep\visual studio 2015\Projects\premierjeu-Charla
 C:\Users\blupp\Google Drive Cégep\visual studio 2015\Projects\premierjeu-CharlandPatrick\ExerciceJeux\Exercice01\bin\Windows\x86\Debug\SharpDX.XInput.xml
 C:\Users\blupp\Google Drive Cégep\visual studio 2015\Projects\premierjeu-CharlandPatrick\ExerciceJeux\Exercice01\bin\Windows\x86\Debug\SharpDX.RawInput.xml
 C:\Users\blupp\Google Drive Cégep\visual studio 2015\Projects\premierjeu-CharlandPatrick\ExerciceJeux\Exercice01\bin\Windows\x86\Debug\SharpDX.Direct3D9.xml
-C:\Users\blupp\Google Drive Cégep\visual studio 2015\Projects\premierjeu-CharlandPatrick\ExerciceJeux\Exercice01\obj\x86\Debug\Exercice01.csprojResolveAssemblyReference.cache
 C:\Users\blupp\Google Drive Cégep\visual studio 2015\Projects\premierjeu-CharlandPatrick\ExerciceJeux\Exercice01\obj\x86\Debug\Exercice01.exe
 C:\Users\blupp\Google Drive Cégep\visual studio 2015\Projects\premierjeu-CharlandPatrick\ExerciceJeux\Exercice01\obj\x86\Debug\Exercice01.pdb
 C:\Users\blupp\Google Drive Cégep\visual studio 2015\Projects\premierjeu-CharlandPatrick\ExerciceJeux\Exercice01\bin\Windows\x86\Debug\Content\Mario.png
 C:\Users\blupp\Google Drive Cégep\visual studio 2015\Projects\premierjeu-CharlandPatrick\ExerciceJeux\Exercice01\bin\Windows\x86\Debug\Content\Bowserjr_MP9.png
 C:\Users\blupp\Google Drive Cégep\visual studio 2015\Projects\premierjeu-CharlandPatrick\ExerciceJeux\Exercice01\bin\Windows\x86\Debug\Content\Bullet_Bill.png
+C:\Users\blupp\Google Drive Cégep\visual studio 2015\Projects\premierjeu-CharlandPatrick\ExerciceJeux\Exercice01\bin\Windows\x86\Debug\Content\smw-bg-clouds1.png
+C:\Users\blupp\Google Drive Cégep\visual studio 2015\Projects\premierjeu-CharlandPatrick\ExerciceJeux\Exercice01\bin\Windows\x86\Debug\Content\resized_daf_12685_super_mario_bros.jpg
+C:\Users\blupp\Google Drive Cégep\visual studio 2015\Projects\premierjeu-CharlandPatrick\ExerciceJeux\Exercice01\bin\Windows\x86\Debug\Exercice01.exe.manifest
+C:\Users\blupp\Google Drive Cégep\visual studio 2015\Projects\premierjeu-CharlandPatrick\ExerciceJeux\Exercice01\bin\Windows\x86\Debug\Exercice01.application
+C:\Users\blupp\Google Drive Cégep\visual studio 2015\Projects\premierjeu-CharlandPatrick\ExerciceJeux\Exercice01\obj\x86\Debug\Exercice01.exe.manifest
+C:\Users\blupp\Google Drive Cégep\visual studio 2015\Projects\premierjeu-CharlandPatrick\ExerciceJeux\Exercice01\obj\x86\Debug\Exercice01.application
