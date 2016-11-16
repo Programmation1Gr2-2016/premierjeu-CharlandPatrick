@@ -43,14 +43,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Exercice01.exe" size="156160">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Exercice01.exe" size="158208">
       <assemblyIdentity name="Exercice01" version="1.0.0.0" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>8xC+o1LA0ZufRK7+p0ipPu/nj/Qdu4LtxtMm8ND/5nE=</dsig:DigestValue>
+        <dsig:DigestValue>fXoVoW8zTnkDhn30x5S9AnQkITmA2aTN86YF97h+FQI=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -201,6 +201,15 @@
       <dsig:DigestValue>23ncgQx8FtgqHfeKUV6hN59Q9w6QsVKfwQeBucbT050=</dsig:DigestValue>
     </hash>
   </file>
+  <file name="Content\Mario-Fireball.png" size="34701">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>RpfspaD5gTU71Pme3kj4ckS75XrcSp/so4XwRV8zv44=</dsig:DigestValue>
+    </hash>
+  </file>
   <file name="Content\resized_daf_12685_super_mario_bros.jpg" size="352272">
     <hash>
       <dsig:Transforms>
@@ -217,6 +226,168 @@
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
       <dsig:DigestValue>yKw/7+VEgUz6syIt2UcJhBhhniwrzp98cRteFZ+UJE4=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Content\Sounds\explosion_x.wav" size="16032">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>y9O63p3QpBK+O1jVIsCaAXJyyyG9ciotVTdadVsbg1w=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Content\Sounds\explosion_x.xnb" size="32079">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>/7sYAxegKrd/bTFo7htQo9dSR/FZoAEzkI1F175IUCI=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Content\Sounds\fanfare3.wav" size="161324">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>u44xYxOZCklxDtPisgxQuezX7TTKSVuIAST0CvKXgvI=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Content\Sounds\fanfare3.xnb" size="161385">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>YsjOUoN2GJVmgaLFJBf/X21NHuKGFJvcBr3kNH9wEjU=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Content\Sounds\gun_44mag_11.wav" size="24390">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>N4Dv3IPUCETaXxVySGXSIEDX//ougfYhEM8T5/7EeY8=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Content\Sounds\gun_44mag_11.xnb" size="24451">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>Dtt6/OLxB3Uf1aZLi6Z2sbZAgxADc8TW5dW294Gb6jk=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Content\Sounds\jet.xnb" size="128261">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>YXzJf3GXqzmDV/IdFQVNUecyuBhFHIUCF3hM0Pen2iM=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Content\Sounds\jet_doppler2.wav" size="31628">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>oc3R5CoQxn/FbWPTCwT1827cliizhOBRrUx+f7ZN4Og=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Content\Sounds\jet_doppler2.xnb" size="63273">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>xg8raeuRQDd6a4e6ytk/HpKWr4Tqve5f9iVG6gE4v7k=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Content\Sounds\jet_flyby1.xnb" size="128295">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>M6fg+PsURsbwSMoZsboGCrF7L0669+eAZkc9X37TlUc=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Content\Sounds\Nowhere Land.mp3" size="4228614">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>tEObXDKfI82aZQ5ZxZsAI5huhOuoEgAt1FCeJ35V0sk=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Content\Sounds\Nowhere Land.wma" size="4551238">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>Qc4GT474LNBfHvx74mjOqYRC2Q9/sCk553U8CRQ+X0k=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Content\Sounds\Nowhere Land.xnb" size="130">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>zV8GmMV5Ya/HRJjTFNixv/9zcYWGgk8i1V7YI4VsFZM=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Content\Sounds\pacman_dies_y.wav" size="8650">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>l562DD+boHYg9VYd6+oZtAEqmW/hWyvyIvSsV80Gftc=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Content\Sounds\pacman_dies_y.xnb" size="76137">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>tmV2oUSZUDXikdiA4j0dy+890MM3GpkoE5fiYNZ6dZ8=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Content\Sounds\phasers3.wav" size="4124">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>KfVnJvBZOB9+THm5cCi2sse84SBKL5ffn86J+5nToXc=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Content\Sounds\phasers3.xnb" size="8265">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>rhcaMBj97qM57bVpG/ksni749gQ+1yMm0YZ0GShygXM=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Content\Sounds\phasesr2.xnb" size="3709">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>zvFPJBclNpF1OweALJnVSVIjFrlTguPH2oz1REZ18Oc=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Icon.ico" size="147541">

@@ -13,3 +13,45 @@
 
 #---------------------------------- Content ---------------------------------#
 
+#begin Sounds/explosion_x.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/explosion_x.wav
+
+#begin Sounds/fanfare3.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/fanfare3.wav
+
+#begin Sounds/gun_44mag_11.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/gun_44mag_11.wav
+
+#begin Sounds/jet_doppler2.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/jet_doppler2.wav
+
+#begin Sounds/pacman_dies_y.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/pacman_dies_y.wav
+
+#begin Sounds/phasers3.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/phasers3.wav
+
+#begin Sounds/Nowhere Land.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Sounds/Nowhere Land.mp3
+
