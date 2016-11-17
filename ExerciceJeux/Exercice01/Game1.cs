@@ -20,9 +20,14 @@ namespace Exercice01
         GameObject fireball;
         Texture2D backgroundTexture;
 
+        int ennemyStartingPosX = 300;
+        int ennemyStartingPosY = 20;
+
         int nombreEnnemis = 2;
         int pointVie = 3;
         int pointVieEnnemi = 3;
+
+        GameObject[] tabEnnemis;
 
         SoundEffect sonExplosion;
         SoundEffect sonFanfare;
@@ -92,24 +97,29 @@ namespace Exercice01
             phaser = sonPhaser.CreateInstance();
 
             //Music
-
+            tabEnnemis = new GameObject[nombreEnnemis];
             Song song = Content.Load<Song>("Sounds\\Nowhere Land");
             MediaPlayer.IsRepeating = true;
             MediaPlayer.Play(song);
-
+ 
             heros = new GameObject();
             heros.estVivant = true;
             heros.vitesse = 5;
             heros.sprite = Content.Load<Texture2D>("Mario.png");
             heros.position = heros.sprite.Bounds;
 
-            ennemi = new GameObject();
-            ennemi.estVivant = true;
-            ennemi.vitesse = 7;
-            ennemi.sprite = Content.Load<Texture2D>("Bowserjr_MP9.png");
-            ennemi.position = ennemi.sprite.Bounds;
-            ennemi.position.X = fenetre.Right - 300;
-            ennemi.position.Y = fenetre.Top + 20;
+            for(int i = 0; i<nombreEnnemis; i++)
+            {
+                ennemi = new GameObject();
+                ennemi.estVivant = true;
+                ennemi.vitesse = 7;
+                ennemi.sprite = Content.Load<Texture2D>("Bowserjr_MP9.png");
+                ennemi.position = ennemi.sprite.Bounds;
+                ennemi.position.X = fenetre.Right - ennemyStartingPosX;
+                ennemi.position.Y = fenetre.Top + ennemyStartingPosY;
+                ennemyStartingPosX += 300;
+                ennemyStartingPosY += 600;
+            }
 
             projectile = new GameObject();
             projectile.estVivant = false;
