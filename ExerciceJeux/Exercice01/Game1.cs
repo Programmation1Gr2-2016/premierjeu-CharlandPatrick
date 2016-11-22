@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Media;
+using System;
 
 namespace Exercice01
 {
@@ -15,19 +16,22 @@ namespace Exercice01
         SpriteBatch spriteBatch;
         Rectangle fenetre;
         GameObject heros;
-        GameObject ennemi;
-        GameObject projectile;
         GameObject fireball;
         Texture2D backgroundTexture;
+
+        bool imageInverse;
+        Random r;
+
 
         int ennemyStartingPosX = 300;
         int ennemyStartingPosY = 20;
 
         int nombreEnnemis = 2;
-        int pointVie = 3;
-        int pointVieEnnemi = 3;
+        int pointVie = 5;
 
         GameObject[] tabEnnemis;
+        GameObject[] tabProjectiles;
+        int[] tabPointVieEnnemi;
 
         SoundEffect sonExplosion;
         SoundEffect sonFanfare;
@@ -97,36 +101,47 @@ namespace Exercice01
             phaser = sonPhaser.CreateInstance();
 
             //Music
-            tabEnnemis = new GameObject[nombreEnnemis];
             Song song = Content.Load<Song>("Sounds\\Nowhere Land");
             MediaPlayer.IsRepeating = true;
             MediaPlayer.Play(song);
- 
+
+            //Ennemi array
+            tabEnnemis = new GameObject[nombreEnnemis];
+            tabProjectiles = new GameObject[nombreEnnemis];
+            tabPointVieEnnemi = new int[nombreEnnemis];
+
             heros = new GameObject();
             heros.estVivant = true;
             heros.vitesse = 5;
             heros.sprite = Content.Load<Texture2D>("Mario.png");
             heros.position = heros.sprite.Bounds;
 
+            r = new Random(); //Random for random direction
+
             for(int i = 0; i<nombreEnnemis; i++)
             {
-                ennemi = new GameObject();
-                ennemi.estVivant = true;
-                ennemi.vitesse = 7;
-                ennemi.sprite = Content.Load<Texture2D>("Bowserjr_MP9.png");
-                ennemi.position = ennemi.sprite.Bounds;
-                ennemi.position.X = fenetre.Right - ennemyStartingPosX;
-                ennemi.position.Y = fenetre.Top + ennemyStartingPosY;
+                tabEnnemis[i] = new GameObject();
+                tabEnnemis[i].estVivant = false;
+                tabPointVieEnnemi[i] = 3;
+                tabEnnemis[i].vitesse = 2;
+                tabEnnemis[i].sprite = Content.Load<Texture2D>("Bowserjr_MP9.png");
+                tabEnnemis[i].position = tabEnnemis[i].sprite.Bounds;
+                tabEnnemis[i].position.X = fenetre.Right - ennemyStartingPosX;
+                tabEnnemis[i].position.Y = fenetre.Top + ennemyStartingPosY;
                 ennemyStartingPosX += 300;
                 ennemyStartingPosY += 600;
+                tabEnnemis[i].direction.X = r.Next(-4, 5);
+                tabEnnemis[i].direction.Y = r.Next(-4, 5);
             }
-
-            projectile = new GameObject();
-            projectile.estVivant = false;
-            projectile.vitesse = 10;
-            projectile.sprite = Content.Load<Texture2D>("Bullet_Bill.png");
-            projectile.position = projectile.sprite.Bounds;
-
+            for (int i = 0; i < nombreEnnemis; i++)
+            {
+                tabProjectiles[i] = new GameObject();
+                tabProjectiles[i].estVivant = false;
+                tabProjectiles[i].vitesse = 10;
+                tabProjectiles[i].sprite = Content.Load<Texture2D>("Bullet_Bill.png");
+                tabProjectiles[i].position = tabProjectiles[i].sprite.Bounds;
+            }
+                
             fireball = new GameObject();
             fireball.estVivant = false;
             fireball.vitesse = 25;
@@ -163,6 +178,7 @@ namespace Exercice01
                 if (Keyboard.GetState().IsKeyDown(Keys.D)) //Droite
                 {
                     heros.position.X += heros.vitesse;
+                    imageInverse = true;
                 }
                 if (Keyboard.GetState().IsKeyDown(Keys.W)) //Up
                 {
@@ -171,6 +187,7 @@ namespace Exercice01
                 if (Keyboard.GetState().IsKeyDown(Keys.A)) //Gauche
                 {
                     heros.position.X -= heros.vitesse;
+                    imageInverse = false;
                 }
                 if (Keyboard.GetState().IsKeyDown(Keys.S)) //Down
                 {
@@ -215,35 +232,59 @@ namespace Exercice01
 
         protected void UpdateEnnemis()
         {
-            if (ennemi.estVivant) //Ennemis move
+            for (int i = 0; i < nombreEnnemis; i++)
             {
-                ennemi.position.Y += ennemi.vitesse;
-
-                if (ennemi.position.Y <= fenetre.Top || ennemi.position.Y >= fenetre.Bottom - ennemi.sprite.Bounds.Height)
+                if (tabEnnemis[i].estVivant) //Ennemis move
                 {
-                    ennemi.vitesse *= -1;
+                    tabEnnemis[i].position.X += (int)tabEnnemis[i].direction.X;
+                    tabEnnemis[i].position.Y += (int)tabEnnemis[i].direction.Y;
+                    if (tabEnnemis[i].position.X < fenetre.Left)
+                    {
+                        tabEnnemis[i].direction.X *= -1;
+                    }
+                    if (tabEnnemis[i].position.X + tabEnnemis[i].sprite.Bounds.Width > fenetre.Right)
+                    {
+                        tabEnnemis[i].direction.X *= -1;
+                    }
+                    if (tabEnnemis[i].position.Y < fenetre.Top)
+                    {
+                        tabEnnemis[i].direction.Y *= -1;
+                    }
+                    if (tabEnnemis[i].position.Y + tabEnnemis[i].sprite.Bounds.Height > fenetre.Bottom)
+                    {
+                        tabEnnemis[i].direction.Y *= -1;
+                    }
                 }
             }
+                
         }
 
         protected void UpdateProjectiles()
         {
             //Projectile move
-            if (heros.estVivant && ennemi.estVivant)
+            for (int i = 0; i < nombreEnnemis; i++)
             {
-                projectile.estVivant = true;
-            }
-            if (projectile.estVivant && ennemi.estVivant && heros.estVivant)
-            {
-                jetFlyby.Play();
-                projectile.position.X -= projectile.vitesse;
-                if (projectile.position.X < fenetre.Left - 500)
+                if (heros.estVivant && tabEnnemis[i].estVivant)
                 {
-                    projectile.position.X = ennemi.position.X;
-                    projectile.position.Y = ennemi.position.Y;
-                    gun.Play();
+                    if(tabProjectiles[i].estVivant==false)
+                    {
+                        gun.Play();
+                        jetFlyby.Play();
+                    }
+                    tabProjectiles[i].estVivant = true;
+                }
+                if (tabProjectiles[i].estVivant && tabEnnemis[i].estVivant)
+                {
+                    tabProjectiles[i].position.X -= tabProjectiles[i].vitesse;
+                    if (tabProjectiles[i].position.X < fenetre.Left - 500)
+                    {
+                        tabProjectiles[i].estVivant = false;
+                        tabProjectiles[i].position.X = tabEnnemis[i].position.X;
+                        tabProjectiles[i].position.Y = tabEnnemis[i].position.Y;
+                    }
                 }
             }
+            
 
             //Fireball move
 
@@ -261,34 +302,41 @@ namespace Exercice01
 
         protected void Collision()
         {
-            if (projectile.estVivant && heros.estVivant && projectile.position.Intersects(heros.position))
+            for (int i = 0; i < nombreEnnemis; i++)
             {
-                explosion.Play();
-                pointVie--;
-                projectile.estVivant = false;
-                projectile.position.X = ennemi.position.X;
-                projectile.position.Y = ennemi.position.Y;
-                projectile.estVivant = true;
-                if(pointVie == 0)
+                if (tabProjectiles[i].estVivant && heros.estVivant && tabProjectiles[i].position.Intersects(heros.position))
                 {
-                    death.Play();
-                    heros.estVivant = false;
-                    projectile.estVivant = false;
+                    tabProjectiles[i].estVivant = false;
+                    explosion.Play();
+                    pointVie--;
+                    tabProjectiles[i].position.X = tabEnnemis[i].position.X;
+                    tabProjectiles[i].position.Y = tabEnnemis[i].position.Y;
+                    if (pointVie == 0)
+                    {
+                        death.Play();
+                        heros.estVivant = false;
+                        tabProjectiles[i].estVivant = false;
+                    }
+                }
+                if (fireball.estVivant && fireball.position.Intersects(tabEnnemis[i].position))
+                {
+                    explosion.Play();
+                    tabPointVieEnnemi[i]--;
+                    fireball.estVivant = false;
+                    fireball.position.X = heros.position.X;
+                    fireball.position.Y = heros.position.Y;
+                    if (tabPointVieEnnemi[i] == 0)
+                    {
+                        fanfare.Play();
+                        tabEnnemis[i].estVivant = false;
+                        tabEnnemis[i].position.X = fenetre.Right + 1000;
+                        tabEnnemis[i].position.Y = fenetre.Top + 1000;
+                        tabProjectiles[i].position.X = tabEnnemis[i].position.X;
+                        tabProjectiles[i].position.Y = tabEnnemis[i].position.Y;
+                    }
                 }
             }
-            if (fireball.estVivant && fireball.position.Intersects(ennemi.position))
-            {
-                explosion.Play();
-                pointVieEnnemi--;
-                fireball.estVivant = false;
-                fireball.position.X = heros.position.X;
-                fireball.position.Y = heros.position.Y;
-                if (pointVieEnnemi == 0)
-                {
-                    fanfare.Play();
-                    ennemi.estVivant = false;
-                }
-            }
+           
         }
 
         /// <summary>
@@ -304,18 +352,29 @@ namespace Exercice01
 
             this.spriteBatch.Draw(backgroundTexture, fenetre, Color.White);
 
-            if(heros.estVivant)
+            if (heros.estVivant)
             {
-                spriteBatch.Draw(heros.sprite, heros.position, Color.White);
+                if (imageInverse)
+                {
+                    spriteBatch.Draw(heros.sprite, heros.position, Color.White);
+                }
+                else
+                {
+                    spriteBatch.Draw(heros.sprite, heros.position, Color.White);
+                }    
             }
-            if(projectile.estVivant && ennemi.estVivant)
+            for (int i = 0; i < nombreEnnemis; i++)
             {
-                spriteBatch.Draw(projectile.sprite, projectile.position, Color.White);
+                if (tabProjectiles[i].estVivant && tabEnnemis[i].estVivant)
+                {
+                    spriteBatch.Draw(tabProjectiles[i].sprite, tabProjectiles[i].position, Color.White);
+                }
+                if (tabEnnemis[i].estVivant)
+                {
+                    spriteBatch.Draw(tabEnnemis[i].sprite, tabEnnemis[i].position, Color.White);
+                }
             }
-            if(ennemi.estVivant)
-            {
-                spriteBatch.Draw(ennemi.sprite, ennemi.position, Color.White);
-            }
+           
             if (fireball.estVivant)
             {
                 spriteBatch.Draw(fireball.sprite, fireball.position, Color.White);
