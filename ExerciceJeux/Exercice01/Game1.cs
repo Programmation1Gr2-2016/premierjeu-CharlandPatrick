@@ -19,6 +19,10 @@ namespace Exercice01
         GameObject fireball;
         Texture2D backgroundTexture;
 
+        SpriteFont font; //Font
+        string gameOver = "GAME OVER";
+        string win = "WIN";
+
         bool imageInverse;
         Random r;
 
@@ -27,7 +31,9 @@ namespace Exercice01
         int ennemyStartingPosY = 20;
 
         int nombreEnnemis = 2;
-        int pointVie = 5;
+        int ennemyMort = 0;
+        int nombreEnnemisCount = 0;
+        int pointVie = 4;
 
         GameObject[] tabEnnemis;
         GameObject[] tabProjectiles;
@@ -65,7 +71,9 @@ namespace Exercice01
             this.graphics.PreferredBackBufferWidth = graphics.GraphicsDevice.DisplayMode.Width;
             this.graphics.PreferredBackBufferHeight = graphics.GraphicsDevice.DisplayMode.Height;
 
-            this.graphics.ToggleFullScreen();
+            Window.Position = new Point(0, 0);
+
+            this.graphics.ApplyChanges();
 
             base.Initialize();
         }
@@ -84,6 +92,9 @@ namespace Exercice01
             fenetre.Height = graphics.GraphicsDevice.DisplayMode.Height;
 
             this.backgroundTexture = this.Content.Load<Texture2D>("resized_daf_12685_super_mario_bros.jpg");
+            // font
+
+            font = Content.Load<SpriteFont>("Font\\Font");
 
             // sounds
 
@@ -201,6 +212,14 @@ namespace Exercice01
                     fireball.estVivant = true;
                 }
             }
+                if (nombreEnnemisCount < tabEnnemis.Length)
+                {
+                    if (nombreEnnemisCount * 10 < gameTime.TotalGameTime.Seconds)
+                    {
+                    tabEnnemis[nombreEnnemisCount].estVivant = true;
+                    nombreEnnemisCount++;
+                    }
+                }
 
             UpdateHeros();
             UpdateEnnemis();
@@ -327,12 +346,19 @@ namespace Exercice01
                     fireball.position.Y = heros.position.Y;
                     if (tabPointVieEnnemi[i] == 0)
                     {
+                        ennemyMort++;
                         fanfare.Play();
                         tabEnnemis[i].estVivant = false;
                         tabEnnemis[i].position.X = fenetre.Right + 1000;
                         tabEnnemis[i].position.Y = fenetre.Top + 1000;
                         tabProjectiles[i].position.X = tabEnnemis[i].position.X;
                         tabProjectiles[i].position.Y = tabEnnemis[i].position.Y;
+                        if(ennemyMort==2)
+                        {
+                            {
+                                spriteBatch.DrawString(font, win, new Vector2((fenetre.Width / 3 + font.MeasureString(win).X), fenetre.Height / 3), Color.Black);
+                            }
+                        }
                     }
                 }
             }
@@ -378,6 +404,11 @@ namespace Exercice01
             if (fireball.estVivant)
             {
                 spriteBatch.Draw(fireball.sprite, fireball.position, Color.White);
+            }
+
+            if (heros.estVivant==false)
+            {
+                spriteBatch.DrawString(font, gameOver, new Vector2((fenetre.Width/3 + font.MeasureString(gameOver).X), fenetre.Height/3), Color.Black);
             }
 
             spriteBatch.End();

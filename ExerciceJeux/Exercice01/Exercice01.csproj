@@ -122,6 +122,9 @@
     <MonoGameContentReference Include="Content\Content.mgcb" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Content\Font\Font.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Exercice01_CléTemporaire.pfx" />
   </ItemGroup>
   <ItemGroup>

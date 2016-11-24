@@ -5,6 +5,8 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exercice01", "Exercice01\Exercice01.csproj", "{723D17C8-3000-4766-B12F-93A4F32D91AD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExerciceSpriteAnime", "ExerciceSpriteAnime\ExerciceSpriteAnime.csproj", "{8E0BC17F-46D5-4D8A-BCA6-85F5663A9A5B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -15,6 +17,10 @@ Global
 		{723D17C8-3000-4766-B12F-93A4F32D91AD}.Debug|x86.Build.0 = Debug|x86
 		{723D17C8-3000-4766-B12F-93A4F32D91AD}.Release|x86.ActiveCfg = Release|x86
 		{723D17C8-3000-4766-B12F-93A4F32D91AD}.Release|x86.Build.0 = Release|x86
+		{8E0BC17F-46D5-4D8A-BCA6-85F5663A9A5B}.Debug|x86.ActiveCfg = Debug|x86
+		{8E0BC17F-46D5-4D8A-BCA6-85F5663A9A5B}.Debug|x86.Build.0 = Debug|x86
+		{8E0BC17F-46D5-4D8A-BCA6-85F5663A9A5B}.Release|x86.ActiveCfg = Release|x86
+		{8E0BC17F-46D5-4D8A-BCA6-85F5663A9A5B}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
