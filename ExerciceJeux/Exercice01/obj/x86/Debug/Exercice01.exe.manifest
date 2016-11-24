@@ -43,14 +43,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Exercice01.exe" size="160256">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Exercice01.exe" size="160768">
       <assemblyIdentity name="Exercice01" version="1.0.0.0" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>0HQQdfgo3+qsulydcov4LU3rf1eHSEq/XTxTznC7IA0=</dsig:DigestValue>
+        <dsig:DigestValue>eT6by0B/a9gAU8zNaH3XQ9ymQZGFjqjrhnYhthknI8g=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

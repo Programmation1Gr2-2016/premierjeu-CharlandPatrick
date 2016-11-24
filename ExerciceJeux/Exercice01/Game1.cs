@@ -24,6 +24,8 @@ namespace Exercice01
         string win = "WIN";
 
         bool imageInverse;
+        bool gameWin = false;
+        bool gameTimeOn = true;
         Random r;
 
 
@@ -34,6 +36,7 @@ namespace Exercice01
         int ennemyMort = 0;
         int nombreEnnemisCount = 0;
         int pointVie = 4;
+        string totalGameTime = "";
 
         GameObject[] tabEnnemis;
         GameObject[] tabProjectiles;
@@ -356,7 +359,7 @@ namespace Exercice01
                         if(ennemyMort==2)
                         {
                             {
-                                spriteBatch.DrawString(font, win, new Vector2((fenetre.Width / 3 + font.MeasureString(win).X), fenetre.Height / 3), Color.Black);
+                                gameWin = true;
                             }
                         }
                     }
@@ -408,9 +411,24 @@ namespace Exercice01
 
             if (heros.estVivant==false)
             {
-                spriteBatch.DrawString(font, gameOver, new Vector2((fenetre.Width/3 + font.MeasureString(gameOver).X), fenetre.Height/3), Color.Black);
+                if (gameTimeOn)
+                {
+                    totalGameTime = "Time: " + gameTime.TotalGameTime.Seconds + "sec";
+                    gameTimeOn = false;
+                }
+                spriteBatch.DrawString(font, gameOver, new Vector2((fenetre.Width/3 + font.MeasureString(gameOver).X), fenetre.Height/3), Color.Black);           
+                spriteBatch.DrawString(font, totalGameTime, new Vector2((fenetre.Width/2 - font.MeasureString(totalGameTime).X + 120), fenetre.Height / 2 - 120), Color.Black);
             }
-
+            if(gameWin)
+            {
+                if (gameTimeOn)
+                {
+                    totalGameTime = "Time: " + gameTime.TotalGameTime.Seconds + "sec";
+                    gameTimeOn = false;
+                }
+                spriteBatch.DrawString(font, win, new Vector2(fenetre.Width/2, fenetre.Height / 3), Color.Black);
+                spriteBatch.DrawString(font, totalGameTime, new Vector2((fenetre.Width / 2 - font.MeasureString(totalGameTime).X + 150), fenetre.Height / 2 - 120), Color.Black);
+            }
             spriteBatch.End();
 
             base.Draw(gameTime);
