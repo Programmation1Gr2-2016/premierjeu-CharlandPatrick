@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exercice01", "Exercice01\Ex
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExerciceSpriteAnime", "ExerciceSpriteAnime\ExerciceSpriteAnime.csproj", "{8E0BC17F-46D5-4D8A-BCA6-85F5663A9A5B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExerciceTileSheet", "ExerciceTileSheet\ExerciceTileSheet.csproj", "{51D51C9E-C726-46DA-A977-9B2A62B00ADD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -21,6 +23,10 @@ Global
 		{8E0BC17F-46D5-4D8A-BCA6-85F5663A9A5B}.Debug|x86.Build.0 = Debug|x86
 		{8E0BC17F-46D5-4D8A-BCA6-85F5663A9A5B}.Release|x86.ActiveCfg = Release|x86
 		{8E0BC17F-46D5-4D8A-BCA6-85F5663A9A5B}.Release|x86.Build.0 = Release|x86
+		{51D51C9E-C726-46DA-A977-9B2A62B00ADD}.Debug|x86.ActiveCfg = Debug|x86
+		{51D51C9E-C726-46DA-A977-9B2A62B00ADD}.Debug|x86.Build.0 = Debug|x86
+		{51D51C9E-C726-46DA-A977-9B2A62B00ADD}.Release|x86.ActiveCfg = Release|x86
+		{51D51C9E-C726-46DA-A977-9B2A62B00ADD}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
