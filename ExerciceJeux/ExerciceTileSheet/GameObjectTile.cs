@@ -11,9 +11,9 @@ namespace ExerciceTileSheet
     class GameObjectTile
     {
         //Nombre total de tuiles pour les lignes qui entrent dans l'écran
-        public const int LIGNE = 12;
+        public const int LIGNE = 7;
         //Le nombre total de tuiles par colonne dans un écran
-        public const int COLONNE = 22;
+        public const int COLONNE = 11;
         //Dimensions d'une tuile
         public const int LARGEUR_TUILE = 175;
         public const int HAUTEUR_TUILE = 175;
@@ -31,34 +31,53 @@ namespace ExerciceTileSheet
         public Rectangle rectPierreCoinDownGauche = new Rectangle(875, 1095, 175, 175);  //4
         public Rectangle rectPierreCoinDownDroite = new Rectangle(1570, 1095, 175, 175); //5
         public Rectangle rectPierreUp = new Rectangle(1050, 750, 175, 175);            //6
-        public Rectangle rectPierreDown = new Rectangle(1050, 1095, 175, 175);            //7
-        public Rectangle rectPierreCurveUpGauche = new Rectangle(1230, 400, 175, 175);  //8
+        public Rectangle rectPierreDown = new Rectangle(1050, 1100, 175, 175);            //7
+        public Rectangle rectPierreCurveUpGauche = new Rectangle(1230, 405, 175, 175);  //8
         public Rectangle rectPierreCurveUpDroite = new Rectangle(1395, 400, 175, 175);  //9
         public Rectangle rectPierreCurveDownGauche = new Rectangle(1225, 570, 175, 175);  //10
         public Rectangle rectPierreCurveDownDroite = new Rectangle(1395, 570, 175, 175);  //11
-        public Rectangle rectWaterCoinDownDroite = new Rectangle(700, 525, 175, 175); //12
-        public Rectangle rectWaterUp = new Rectangle(175, 350, 175, 175);            //13
-        public Rectangle rectWaterSpecial = new Rectangle(1060, 0, 175, 175);            //14
-        public Rectangle rectSable = new Rectangle(1225, 920, 175, 175);            //15
-        public Rectangle rectGazon = new Rectangle(1050, 2100, 175, 175);            //16
         public Rectangle rectPierreGauche = new Rectangle(875, 920, 175, 175);            //17
         public Rectangle rectPierreDroite = new Rectangle(1565, 920, 175, 175);            //18
-
+        public Rectangle rectFin = new Rectangle(1565, 920, 175, 175); //20
+        public Rectangle rectPorte = new Rectangle(1400, 2145, 175, 175); //21
+        public Rectangle rectBlessure = new Rectangle(1050, 2145, 175, 175); //22
 
         //La carte qui est affichée
-        public int[,] map = {                      //Switch here
-                            {2,6,3,2,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,3},
-                            {17,19,18,17,15,8,7,7,7,7,7,7,7,7,1,1,1,1,1,1,1,18},
-                            {17,19,18,17,19,10,6,6,6,3,1,6,7,7,7,7,1,1,1,1,1,18},
-                            {17,19,18,17,19,8,7,9,19,18,1,1,1,1,1,1,1,1,1,1,1,18},
-                            {17,19,10,11,19,18,1,17,19,18,1,1,1,1,1,1,1,1,1,1,1,18},
-                            {4,9,19,8,7,5,1,17,19,18,1,1,1,1,1,1,1,1,1,1,1,18},//switch here
-                            {1,17,19,18,1,1,1,17,19,18,1,1,1,1,1,1,1,1,1,1,1,18},
-                            {17,19,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,18},
-                            {17,19,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,18},
-                            {17,19,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,18},
-                            {17,19,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,18},
-                            {4,7,7,7,7,7,7,7,7,5,6,7,7,7,7,7,7,7,7,7,7,5},
+        public int[,] map1 = {                      
+                            {2,6,3,2,6,6,6,6,6,6,3},
+                            {17,19,18,17,19,8,7,7,7,7,21},
+                            {17,19,18,17,22,10,6,6,6,3,1},
+                            {17,19,18,17,19,8,7,9,19,18,1},
+                            {17,19,10,11,19,18,1,17,19,18,1},
+                            {4,9,19,8,7,5,1,17,19,18,1},
+                            {1,17,21,18,1,1,1,17,21,18,1},
+                            };
+        public int[,] map2 = {
+                            {1,17,21,18,1,1,1,17,21,18,1},
+                            {1,17,19,18,1,1,1,17,19,18,1},
+                            {1,17,19,10,6,6,6,11,6,3,1},
+                            {1,17,19,8,7,7,7,9,19,18,1},
+                            {1,17,10,11,19,18,1,17,19,18,1},
+                            {4,9,19,8,7,5,1,17,19,18,21},
+                            {4,17,21,18,1,1,1,17,21,18,1},
+                            };
+        public int[,] map3 = {
+                            {2,6,3,2,6,6,6,6,6,6,3},
+                            {17,19,18,17,15,8,7,7,7,7,21},
+                            {17,19,18,17,22,10,6,6,6,3,1},
+                            {17,19,18,17,19,8,7,9,19,18,1},
+                            {17,19,10,11,19,18,1,17,19,18,1},
+                            {4,9,19,8,7,5,1,17,19,18,1},
+                            {1,17,21,18,1,1,1,17,21,18,1},
+                            };
+        public int[,] map4 = {
+                            {2,6,3,2,6,6,6,6,6,6,3},
+                            {17,19,18,17,15,8,7,7,7,7,21},
+                            {17,19,18,17,22,10,6,6,6,3,1},
+                            {17,19,18,17,19,8,7,9,19,18,1},
+                            {17,19,10,11,19,18,1,17,19,18,1},
+                            {4,9,19,8,7,5,1,17,19,18,1},
+                            {1,17,21,18,1,1,1,17,21,18,1},
                             };
 
         public void Draw(SpriteBatch spriteBatch) // Draw board
@@ -69,7 +88,7 @@ namespace ExerciceTileSheet
                 for (int j = 0; j < COLONNE; j++)
                 {
                     position.X = (j * LARGEUR_TUILE);
-                    switch (map[i, j])
+                    switch (map1[i, j])
                     {
                         case 1:
                             spriteBatch.Draw(texture, position, rectPierre, Color.White);
@@ -104,21 +123,6 @@ namespace ExerciceTileSheet
                         case 11:
                             spriteBatch.Draw(texture, position, rectPierreCurveDownDroite, Color.White);
                             break;
-                        case 12:
-                            spriteBatch.Draw(texture, position, rectWaterCoinDownDroite, Color.White);
-                            break;
-                        case 13:
-                            spriteBatch.Draw(texture, position, rectWaterUp, Color.White);
-                            break;
-                        case 14:
-                            spriteBatch.Draw(texture, position, rectWaterSpecial, Color.White);
-                            break;
-                        case 15:
-                            spriteBatch.Draw(texture, position, rectSable, Color.White);
-                            break;
-                        case 16:
-                            spriteBatch.Draw(texture, position, rectGazon, Color.White);
-                            break;
                         case 17:
                             spriteBatch.Draw(texture, position, rectPierreGauche, Color.White);
                             break;
@@ -127,6 +131,15 @@ namespace ExerciceTileSheet
                             break;
                         case 19:
                             spriteBatch.Draw(texture, position, rectPierreCoinUpGNext, Color.White);
+                            break;
+                        case 20:
+                            spriteBatch.Draw(texture, position, rectFin, Color.White);
+                            break;
+                        case 21:
+                            spriteBatch.Draw(texture, position, rectPorte, Color.White);
+                            break;
+                        case 22:
+                            spriteBatch.Draw(texture, position, rectBlessure, Color.White);
                             break;
                     }
                 }

@@ -10,6 +10,7 @@ namespace ExerciceTileSheet
 {
     class GameObjectAnime
     {
+        public bool estVivant;
         public Texture2D sprite;
         public Vector2 vitesse;
         public Vector2 direction;

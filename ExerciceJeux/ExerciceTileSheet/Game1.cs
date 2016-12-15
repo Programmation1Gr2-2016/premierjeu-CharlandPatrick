@@ -13,6 +13,21 @@ namespace ExerciceTileSheet
         SpriteBatch spriteBatch;
         Rectangle fenetre;
 
+        //Texte
+        SpriteFont font; //Font
+        string gameOver = "Partie terminée";
+        string win = "C'est gagné!";
+        string vie = "Vie: ";
+
+        int nbVie = 10;
+
+        bool gameWin = false;
+        bool gameTimeOn = true;
+        string totalGameTime = "";
+
+        int dammageBuffer = 0;
+        
+
         // Fond de tuiles
         GameObjectTile fond;
 
@@ -61,15 +76,19 @@ namespace ExerciceTileSheet
             fenetre.Width = graphics.GraphicsDevice.DisplayMode.Width;
             fenetre.Height = graphics.GraphicsDevice.DisplayMode.Height;
 
+            //Load Font
+            font = Content.Load<SpriteFont>("Font\\Font");
+
             fond = new GameObjectTile();
             fond.texture = Content.Load<Texture2D>("TileSheet\\pokemon_world.png");
 
             perso = new GameObjectAnime();
+            perso.estVivant = true;
             perso.direction = Vector2.Zero;
             perso.vitesse.X = 2;
             perso.vitesse.Y = 2;
             perso.objetState = GameObjectAnime.etats.attenteDroite;
-            perso.position = new Rectangle (62, 80, 52, 83);   //Position initiale de perso
+            perso.position = new Rectangle (180, 180, 52, 83);   //Position initiale de perso
             perso.sprite = Content.Load<Texture2D>("Sprite\\Perso_SpriteSheet.png");
 
             // TODO: use this.Content to load your game content here
@@ -96,79 +115,134 @@ namespace ExerciceTileSheet
 
             // TODO: Add your update logic here
 
-            keys = Keyboard.GetState();
-            perso.position.X += (int)(perso.vitesse.X * perso.direction.X);
-            perso.position.Y += (int)(perso.vitesse.Y * perso.direction.Y);
+            if(perso.estVivant)
+            {
+                keys = Keyboard.GetState();
+                perso.position.X += (int)(perso.vitesse.X * perso.direction.X);
+                perso.position.Y += (int)(perso.vitesse.Y * perso.direction.Y);
 
 
-            if (keys.IsKeyDown(Keys.Right))
-            {
-                perso.direction.X = 2;
-                perso.objetState = GameObjectAnime.etats.runDroite;
-            }
-            if (keys.IsKeyUp(Keys.Right) && previousKeys.IsKeyDown(Keys.Right))
-            {
-                perso.direction.X = 0;
-                perso.objetState = GameObjectAnime.etats.attenteDroite;
-            }
-            if (keys.IsKeyDown(Keys.Left))
-            {
-                perso.direction.X = -2;
-                perso.objetState = GameObjectAnime.etats.runGauche;
-            }
-            if (keys.IsKeyUp(Keys.Left) && previousKeys.IsKeyDown(Keys.Left))
-            {
-                perso.direction.X = 0;
-                perso.objetState = GameObjectAnime.etats.attenteGauche;
-            }
-            if (keys.IsKeyDown(Keys.Up))
-            {
-                perso.direction.Y = -2;
-                perso.objetState = GameObjectAnime.etats.runHaut;
-            }
-            if (keys.IsKeyUp(Keys.Up) && previousKeys.IsKeyDown(Keys.Up))
-            {
-                perso.direction.Y = 0;
-                perso.objetState = GameObjectAnime.etats.attenteHaut;
-            }
-            if (keys.IsKeyDown(Keys.Down))
-            {
-                perso.direction.Y = 2;
-                perso.objetState = GameObjectAnime.etats.runBas;
-            }
-            if (keys.IsKeyUp(Keys.Down) && previousKeys.IsKeyDown(Keys.Down))
-            {
-                perso.direction.Y = 0;
-                perso.objetState = GameObjectAnime.etats.attenteBas;
+                if (keys.IsKeyDown(Keys.Right))
+                {
+                    perso.direction.X = 2;
+                    perso.objetState = GameObjectAnime.etats.runDroite;
+                }
+                if (keys.IsKeyUp(Keys.Right) && previousKeys.IsKeyDown(Keys.Right))
+                {
+                    perso.direction.X = 0;
+                    perso.objetState = GameObjectAnime.etats.attenteDroite;
+                }
+                if (keys.IsKeyDown(Keys.Left))
+                {
+                    perso.direction.X = -2;
+                    perso.objetState = GameObjectAnime.etats.runGauche;
+                }
+                if (keys.IsKeyUp(Keys.Left) && previousKeys.IsKeyDown(Keys.Left))
+                {
+                    perso.direction.X = 0;
+                    perso.objetState = GameObjectAnime.etats.attenteGauche;
+                }
+                if (keys.IsKeyDown(Keys.Up))
+                {
+                    perso.direction.Y = -2;
+                    perso.objetState = GameObjectAnime.etats.runHaut;
+                }
+                if (keys.IsKeyUp(Keys.Up) && previousKeys.IsKeyDown(Keys.Up))
+                {
+                    perso.direction.Y = 0;
+                    perso.objetState = GameObjectAnime.etats.attenteHaut;
+                }
+                if (keys.IsKeyDown(Keys.Down))
+                {
+                    perso.direction.Y = 2;
+                    perso.objetState = GameObjectAnime.etats.runBas;
+                }
+                if (keys.IsKeyUp(Keys.Down) && previousKeys.IsKeyDown(Keys.Down))
+                {
+                    perso.direction.Y = 0;
+                    perso.objetState = GameObjectAnime.etats.attenteBas;
+                }
             }
 
             //On appelle la méthode Update de Perso qui permet de gérer les états
-            perso.Update(gameTime);
-            previousKeys = keys;
-
-            for (int ligne = 0; ligne < fond.map.GetLength(0); ligne++)
+            if(perso.estVivant)
             {
-                for (int colonne = 0; colonne < fond.map.GetLength(1); colonne++)
+                perso.Update(gameTime);
+                previousKeys = keys;
+
+                for (int ligne = 0; ligne < fond.map1.GetLength(0); ligne++)
                 {
-                    Rectangle tuile = new Rectangle();
-                    tuile.X = colonne * GameObjectTile.LARGEUR_TUILE - (int)(perso.vitesse.X * perso.direction.X);
-                    tuile.Y = ligne * GameObjectTile.HAUTEUR_TUILE - (int)(perso.vitesse.Y * perso.direction.Y);
-                    tuile.Width = GameObjectTile.LARGEUR_TUILE;
-                    tuile.Height = GameObjectTile.HAUTEUR_TUILE;
-                    if (tuile.Intersects(perso.position))
+                    for (int colonne = 0; colonne < fond.map1.GetLength(1); colonne++)
                     {
-                        switch (fond.map[ligne, colonne])
+                        Rectangle tuile = new Rectangle();
+                        tuile.X = colonne * GameObjectTile.LARGEUR_TUILE - (int)(perso.vitesse.X * perso.direction.X);
+                        tuile.Y = ligne * GameObjectTile.HAUTEUR_TUILE - (int)(perso.vitesse.Y * perso.direction.Y);
+                        tuile.Width = GameObjectTile.LARGEUR_TUILE;
+                        tuile.Height = GameObjectTile.HAUTEUR_TUILE;
+                        if (tuile.Intersects(perso.position))
                         {
-                            case 1: 		 // ne rien faire
-                                break;
-                            case 2:		// empêcher le mouvement
-                                break;
-                            case 3:		// faire une autre action...
-                                break;
+                            switch (fond.map1[ligne, colonne])
+                            {
+                                case 1:
+                                    perso.position.X -= (int)(perso.vitesse.X * perso.direction.X);
+                                    perso.position.Y -= (int)(perso.vitesse.Y * perso.direction.Y);
+                                    break;
+                                case 3:
+                                    perso.position.X -= (int)(perso.vitesse.X * perso.direction.X);
+                                    perso.position.Y -= (int)(perso.vitesse.Y * perso.direction.Y);
+                                    break;
+                                case 5:
+                                    perso.position.X -= (int)(perso.vitesse.X * perso.direction.X);
+                                    perso.position.Y -= (int)(perso.vitesse.Y * perso.direction.Y);
+                                    break;
+                                case 17: //okay
+                                    perso.position.X -= (int)(perso.vitesse.X * perso.direction.X);
+                                    perso.position.Y -= (int)(perso.vitesse.Y * perso.direction.Y);
+                                    break;
+                                case 18: //okay	
+                                    perso.position.X -= (int)(perso.vitesse.X * perso.direction.X);
+                                    perso.position.Y -= (int)(perso.vitesse.Y * perso.direction.Y);
+                                    break;
+                                case 6: //okay
+                                    perso.position.X -= (int)(perso.vitesse.X * perso.direction.X);
+                                    perso.position.Y -= (int)(perso.vitesse.Y * perso.direction.Y);
+                                    break;
+                                    break;
+                                case 4: //okay
+                                    perso.position.X -= (int)(perso.vitesse.X * perso.direction.X);
+                                    perso.position.Y -= (int)(perso.vitesse.Y * perso.direction.Y);
+                                    break;
+                                case 10:
+                                    perso.position.X -= (int)(perso.vitesse.X * perso.direction.X);
+                                    perso.position.Y -= (int)(perso.vitesse.Y * perso.direction.Y);
+                                    break;
+                                case 11:
+                                    perso.position.X -= (int)(perso.vitesse.X * perso.direction.X);
+                                    perso.position.Y -= (int)(perso.vitesse.Y * perso.direction.Y);
+                                    break;
+                                case 22:
+                                    if (dammageBuffer == 0)
+                                    {
+                                        nbVie -= 1;
+                                    }
+                                    dammageBuffer += 1;
+                                    if (dammageBuffer > 300)
+                                    {
+                                        dammageBuffer = 0;
+                                    }
+                                    break;
+                            }
                         }
                     }
                 }
             }
+
+            if(nbVie ==0)
+            {
+                perso.estVivant = false;
+            }
+
+            //Changement de map
 
             base.Update(gameTime);
         }
@@ -185,7 +259,36 @@ namespace ExerciceTileSheet
 
             spriteBatch.Begin();
             fond.Draw(spriteBatch);
-            spriteBatch.Draw(perso.sprite, perso.position, perso.spriteAfficher, Color.White);
+
+            if(perso.estVivant)
+            {
+                spriteBatch.Draw(perso.sprite, perso.position, perso.spriteAfficher, Color.White);
+            }
+
+            //Display life
+            spriteBatch.DrawString(font, vie + nbVie, new Vector2(75, 50), Color.White);
+
+            if (perso.estVivant == false)
+            {
+                if (gameTimeOn)
+                {
+                    totalGameTime = "Temps: " + gameTime.TotalGameTime.Seconds + "sec";
+                    gameTimeOn = false;
+                }
+                spriteBatch.DrawString(font, gameOver, new Vector2((fenetre.Width / 3 + font.MeasureString(gameOver).X), fenetre.Height / 3), Color.White);
+                spriteBatch.DrawString(font, totalGameTime, new Vector2((fenetre.Width / 2 - font.MeasureString(totalGameTime).X + 120), fenetre.Height / 2 - 120), Color.White);
+            }
+                if (gameWin)
+            {
+                if (gameTimeOn)
+                {
+                    totalGameTime = "Temps: " + gameTime.TotalGameTime.Seconds + "sec";
+                    gameTimeOn = false;
+                }
+                spriteBatch.DrawString(font, win, new Vector2(fenetre.Width / 2, fenetre.Height / 3), Color.White);
+                spriteBatch.DrawString(font, totalGameTime, new Vector2((fenetre.Width / 2 - font.MeasureString(totalGameTime).X + 150), fenetre.Height / 2 - 120), Color.White);
+            }
+
             spriteBatch.End();
 
             base.Draw(gameTime);
