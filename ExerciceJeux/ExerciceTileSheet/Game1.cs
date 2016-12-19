@@ -15,12 +15,25 @@ namespace ExerciceTileSheet
 
         //Texte
         SpriteFont font; //Font
-        string gameOver = "Partie terminée";
-        string win = "C'est gagné!";
+        string gameOver = "GAME OVER";
+        string win = "Win!";
         string vie = "Vie: ";
+        string essais = "Essais: ";
+        string mTemps = "Meilleurs temps: ";
+        int moyenneTemps = 0;
+        int meilleurTemps = 0;
+        int temps = 0;
+        string tempsContinue = "";
 
+        //Changement de map
+        string actualMap = "map1";
+
+        //Life count
         int nbVie = 10;
+        int nbEssais = 1;
+        string reussite = "Victoire: ";
 
+        //Text
         bool gameWin = false;
         bool gameTimeOn = true;
         string totalGameTime = "";
@@ -40,8 +53,6 @@ namespace ExerciceTileSheet
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
         }
-
-
 
         /// <summary>
         /// Allows the game to perform any initialization it needs to before starting to run.
@@ -170,9 +181,9 @@ namespace ExerciceTileSheet
                 perso.Update(gameTime);
                 previousKeys = keys;
 
-                for (int ligne = 0; ligne < fond.map1.GetLength(0); ligne++)
+                for (int ligne = 0; ligne < fond.map.GetLength(0); ligne++)
                 {
-                    for (int colonne = 0; colonne < fond.map1.GetLength(1); colonne++)
+                    for (int colonne = 0; colonne < fond.map.GetLength(1); colonne++)
                     {
                         Rectangle tuile = new Rectangle();
                         tuile.X = colonne * GameObjectTile.LARGEUR_TUILE - (int)(perso.vitesse.X * perso.direction.X);
@@ -181,7 +192,7 @@ namespace ExerciceTileSheet
                         tuile.Height = GameObjectTile.HAUTEUR_TUILE;
                         if (tuile.Intersects(perso.position))
                         {
-                            switch (fond.map1[ligne, colonne])
+                            switch (fond.map[ligne, colonne])
                             {
                                 case 1:
                                     perso.position.X -= (int)(perso.vitesse.X * perso.direction.X);
@@ -195,20 +206,11 @@ namespace ExerciceTileSheet
                                     perso.position.X -= (int)(perso.vitesse.X * perso.direction.X);
                                     perso.position.Y -= (int)(perso.vitesse.Y * perso.direction.Y);
                                     break;
-                                case 17: //okay
-                                    perso.position.X -= (int)(perso.vitesse.X * perso.direction.X);
-                                    perso.position.Y -= (int)(perso.vitesse.Y * perso.direction.Y);
-                                    break;
-                                case 18: //okay	
+                                case 4: //okay
                                     perso.position.X -= (int)(perso.vitesse.X * perso.direction.X);
                                     perso.position.Y -= (int)(perso.vitesse.Y * perso.direction.Y);
                                     break;
                                 case 6: //okay
-                                    perso.position.X -= (int)(perso.vitesse.X * perso.direction.X);
-                                    perso.position.Y -= (int)(perso.vitesse.Y * perso.direction.Y);
-                                    break;
-                                    break;
-                                case 4: //okay
                                     perso.position.X -= (int)(perso.vitesse.X * perso.direction.X);
                                     perso.position.Y -= (int)(perso.vitesse.Y * perso.direction.Y);
                                     break;
@@ -220,13 +222,68 @@ namespace ExerciceTileSheet
                                     perso.position.X -= (int)(perso.vitesse.X * perso.direction.X);
                                     perso.position.Y -= (int)(perso.vitesse.Y * perso.direction.Y);
                                     break;
+                                case 17: //okay
+                                    perso.position.X -= (int)(perso.vitesse.X * perso.direction.X);
+                                    perso.position.Y -= (int)(perso.vitesse.Y * perso.direction.Y);
+                                    break;
+                                case 18: //okay	
+                                    perso.position.X -= (int)(perso.vitesse.X * perso.direction.X);
+                                    perso.position.Y -= (int)(perso.vitesse.Y * perso.direction.Y);
+                                    break;
+                                case 20: //okay
+                                    if(nbEssais < 3)
+                                    {
+                                        if (gameTimeOn)
+                                        {
+                                            moyenneTemps += gameTime.TotalGameTime.Seconds;
+                                            temps = gameTime.TotalGameTime.Seconds;
+                                            gameTimeOn = false;
+                                        }
+                                        if (nbEssais == 1)
+                                        {
+                                            meilleurTemps = temps;
+                                        }
+                                        else if (temps < meilleurTemps)
+                                        {
+                                            meilleurTemps = temps;
+                                        }
+                                        nbEssais += 1;
+                                        fond.map = fond.map1;
+                                        perso.position = new Rectangle(180, 180, 52, 83);
+                                        actualMap = "map1";
+                                        nbVie = 10;
+                                        ResetElapsedTime();
+                                        gameTimeOn = true;   
+                                    }
+                                    else
+                                    {
+                                        if (gameTimeOn)
+                                        {
+                                            moyenneTemps += gameTime.TotalGameTime.Seconds;
+                                            temps = gameTime.TotalGameTime.Seconds;
+                                            gameTimeOn = false;
+                                        }
+                                        if (nbEssais == 1)
+                                        {
+                                            meilleurTemps = temps;
+                                        }
+                                        else if(temps < meilleurTemps)
+                                        {
+                                            meilleurTemps = temps;
+                                        }
+                                        totalGameTime = "Moyenne de temps: " + (moyenneTemps / 3) + " sec";
+                                        perso.estVivant = false;
+                                    }
+                                    perso.position.X -= (int)(perso.vitesse.X * perso.direction.X);
+                                    perso.position.Y -= (int)(perso.vitesse.Y * perso.direction.Y);
+                                    break;
                                 case 22:
                                     if (dammageBuffer == 0)
                                     {
                                         nbVie -= 1;
                                     }
                                     dammageBuffer += 1;
-                                    if (dammageBuffer > 300)
+                                    if (dammageBuffer > 50)
                                     {
                                         dammageBuffer = 0;
                                     }
@@ -236,12 +293,65 @@ namespace ExerciceTileSheet
                     }
                 }
             }
+            
+            //Changement de map
 
-            if(nbVie ==0)
+
+            if(perso.position.Y+65 > fenetre.Bottom && actualMap == "map1")
+            {
+                fond.map = fond.map2;       
+                perso.position = new Rectangle(perso.position.X, fenetre.Top + 10, 52, 83);
+                actualMap = "map2";
+            }
+            else if (perso.position.Y < fenetre.Top && actualMap == "map2")
+            {
+                fond.map = fond.map1;
+                perso.position = new Rectangle(perso.position.X, fenetre.Bottom - 85, 52, 83);
+                actualMap = "map1";
+            }
+            else if (perso.position.X + 10 > fenetre.Right && actualMap == "map1")
+            {
+                fond.map = fond.map3;
+                perso.position = new Rectangle(fenetre.Left + 10, perso.position.Y, 52, 83);
+                actualMap = "map3";
+            }
+            else if (perso.position.X < fenetre.Left && actualMap == "map3")
+            {
+                fond.map = fond.map1;
+                perso.position = new Rectangle(fenetre.Right - 55, perso.position.Y, 52, 83);
+                actualMap = "map1";
+            }
+            else if (perso.position.X + 10 > fenetre.Right && actualMap == "map2")
+            {
+                fond.map = fond.map4;
+                perso.position = new Rectangle(fenetre.Left + 10, perso.position.Y, 52, 83);
+                actualMap = "map4";
+            }
+            else if (perso.position.X < fenetre.Left && actualMap == "map4")
+            {
+                fond.map = fond.map2;
+                perso.position = new Rectangle(fenetre.Right - 55, perso.position.Y, 52, 83);
+                actualMap = "map2";
+            }
+            else if (perso.position.Y + 65 > fenetre.Bottom && actualMap == "map3")
+            {
+                fond.map = fond.map4;
+                perso.position = new Rectangle(perso.position.X, fenetre.Top + 10, 52, 83);
+                actualMap = "map4";
+            }
+            else if (perso.position.Y < fenetre.Top && actualMap == "map4")
+            {
+                fond.map = fond.map3;
+                perso.position = new Rectangle(perso.position.X, fenetre.Bottom - 85, 52, 83);
+                actualMap = "map3";
+            }
+            if (nbVie ==0)
             {
                 perso.estVivant = false;
             }
 
+            //TEST temps
+            tempsContinue = "" + gameTime.TotalGameTime.Seconds;
             //Changement de map
 
             base.Update(gameTime);
@@ -267,18 +377,18 @@ namespace ExerciceTileSheet
 
             //Display life
             spriteBatch.DrawString(font, vie + nbVie, new Vector2(75, 50), Color.White);
+            spriteBatch.DrawString(font, essais + nbEssais, new Vector2(75, 100), Color.White);
+            spriteBatch.DrawString(font, mTemps + meilleurTemps + " sec", new Vector2(75, 150), Color.White);
+            spriteBatch.DrawString(font, tempsContinue, new Vector2(75, 200), Color.White);
 
             if (perso.estVivant == false)
             {
-                if (gameTimeOn)
-                {
-                    totalGameTime = "Temps: " + gameTime.TotalGameTime.Seconds + "sec";
-                    gameTimeOn = false;
-                }
-                spriteBatch.DrawString(font, gameOver, new Vector2((fenetre.Width / 3 + font.MeasureString(gameOver).X), fenetre.Height / 3), Color.White);
-                spriteBatch.DrawString(font, totalGameTime, new Vector2((fenetre.Width / 2 - font.MeasureString(totalGameTime).X + 120), fenetre.Height / 2 - 120), Color.White);
+                spriteBatch.DrawString(font, gameOver, new Vector2((fenetre.Width / 3), fenetre.Height / 2), Color.White);
+                spriteBatch.DrawString(font, reussite + nbEssais, new Vector2((fenetre.Width / 3), fenetre.Height / 2 + 50), Color.White);
+                spriteBatch.DrawString(font, totalGameTime, new Vector2((fenetre.Width / 3), fenetre.Height / 2 + 100), Color.White);
+                spriteBatch.DrawString(font, mTemps + meilleurTemps + " sec", new Vector2((fenetre.Width / 3), fenetre.Height / 2 + 150), Color.White);
             }
-                if (gameWin)
+            if (gameWin)
             {
                 if (gameTimeOn)
                 {
